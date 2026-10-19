@@ -1,0 +1,22 @@
+package com.ravi.transaction.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ravi.transaction.entity.Order;
+import com.ravi.transaction.service.OrderService;
+
+@RestController 
+@RequestMapping("/api/order")
+public class OrderController {
+    private OrderService orderService;
+    public OrderController(OrderService orderService){
+        this.orderService = orderService;
+    }
+    public ResponseEntity<String> placeOrder(@RequestBody Order order){
+        orderService.placeOrder(order);
+        return ResponseEntity.ok("DONE");
+    }
+}
